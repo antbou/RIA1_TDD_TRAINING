@@ -7,11 +7,11 @@
 
 "use strict";
 
-let CartItem =  require('../CartItem.js');
+const CartItem =  require('../CartItem.js');
 
-const InvalidArticleIdException = require("../CartItem.js");
-const InvalidQuantityException = require("../CartItem.js");
-const InvalidPriceException = require("../CartItem.js");
+const InvalidArticleIdException = require("../exceptions/CartItemException.js");
+const InvalidQuantityException = require("../exceptions/CartItemException.js");
+const InvalidPriceException = require("../exceptions/CartItemException.js");
 
 test('allGetters_NominalCase_Success', () => {
     //given
@@ -23,7 +23,6 @@ test('allGetters_NominalCase_Success', () => {
 
     //when
     //we call the getters directly in assertion below
-
     //then
     expect(articleId).toEqual(cartItem.ArticleId);
     expect(quantity).toEqual(cartItem.Quantity);
@@ -83,7 +82,7 @@ test('Quantity_SetQuantityNominalCase_Success', () => {
     cartItem.Quantity = expectedQuantity;
 
     //then
-    expect(expectedQuantity).toEqual(cartItem.Price);
+    expect(expectedQuantity).toEqual(cartItem.Quantity);
     expect(expectedTotal).toEqual(cartItem.Total);
 })
 
@@ -128,7 +127,7 @@ test('Price_SetPriceInvalidPrice_ThrowException', () => {
     let invalidPriceToSet = 9;//Invalid quantity (smaller than 10)
 
     //when
-    expect(() => cartItem.Quantity = invalidPriceToSet).toThrow(InvalidPriceException);
+    expect(() => cartItem.Price = invalidPriceToSet).toThrow(InvalidPriceException);
 
     //then
     //Exception is thrown

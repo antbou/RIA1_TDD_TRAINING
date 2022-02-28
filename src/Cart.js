@@ -18,8 +18,8 @@ module.exports = class Cart{
      * @brief This method constructs a Cart Object
      * @param items : list of cartItems
      */
-    constructor(items = null){
-        throw new Error('Method not implemented.');
+    constructor(items = []) {
+        this.#items = items;
     }
 
     /**
@@ -35,7 +35,10 @@ module.exports = class Cart{
      * @exception EmptyCartException is thrown if the Cart is empty
      */
     get TotalPrice(){
-        throw new Error('Method not implemented.');
+        if (this.#items == null){
+            return 0;
+        }
+        return this.#items.map(item => item.price).reduce((prev, next) => prev + next);
     }
     //endregion public methods
 

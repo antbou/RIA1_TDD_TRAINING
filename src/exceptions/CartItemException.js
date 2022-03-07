@@ -1,8 +1,4 @@
-class Error {
-    constructor(message) {
-        this.message = message;
-    }
-}
+const Error = require("./Error.js");
 
 class CartItemException extends Error{
 }

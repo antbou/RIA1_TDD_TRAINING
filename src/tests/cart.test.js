@@ -8,7 +8,7 @@
 
 let Cart = require('../Cart.js');
 const CartItem = require("../CartItem.js");
-const EmptyCartException = require("../CartItem.js");
+const EmptyCartException = require("../exceptions/CartException.js");
 
 test('getTotalCart_NominalCase_Success', () => {
     //given

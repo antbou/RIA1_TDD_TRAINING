@@ -8,6 +8,8 @@
 
 "use strict";
 
+const EmptyCartException = require("./exceptions/CartException.js");
+
 module.exports = class Cart {
 
     //region private attributes
@@ -27,16 +29,16 @@ module.exports = class Cart {
      * @exception EmptyCartException is thrown if the Cart is empty
      */
     get items() {
-        throw new Error('Method not implemented.');
+        return this.#items;
     }
 
     /**
      * @brief This property returns the total of the Cart.
      * @exception EmptyCartException is thrown if the Cart is empty
      */
-    get TotalPrice() {
-        if (this.#items == null) {
-            return 0;
+    get totalPrice() {
+        if (this.items == null) {
+            throw new EmptyCartException('The cart items cannot be null');
         }
         return this.#items.map(item => item.price).reduce((prev, next) => prev + next);
     }
@@ -46,20 +48,3 @@ module.exports = class Cart {
     //endregion private methods
 }
 
-//TODO externalize Error class (duplicate with Cart and CartItem)
-class Error {
-    #message;
-    constructor(message) {
-        this.#message = message;
-    }
-
-    get message() {
-        return this.#message;
-    }
-}
-
-class CartException extends Error {
-}
-
-module.exports = class EmptyCartException extends CartException {
-}

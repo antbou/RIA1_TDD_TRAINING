@@ -8,7 +8,7 @@
 
 "use strict";
 
-module.exports = class Cart{
+module.exports = class Cart {
 
     //region private attributes
     #items = null;
@@ -26,7 +26,7 @@ module.exports = class Cart{
      * @brief This property returns the list of CartItems presents in the Cart.
      * @exception EmptyCartException is thrown if the Cart is empty
      */
-    get Items(){
+    get items() {
         throw new Error('Method not implemented.');
     }
 
@@ -34,8 +34,8 @@ module.exports = class Cart{
      * @brief This property returns the total of the Cart.
      * @exception EmptyCartException is thrown if the Cart is empty
      */
-    get TotalPrice(){
-        if (this.#items == null){
+    get TotalPrice() {
+        if (this.#items == null) {
             return 0;
         }
         return this.#items.map(item => item.price).reduce((prev, next) => prev + next);
@@ -44,4 +44,22 @@ module.exports = class Cart{
 
     //region private methods
     //endregion private methods
+}
+
+//TODO externalize Error class (duplicate with Cart and CartItem)
+class Error {
+    #message;
+    constructor(message) {
+        this.#message = message;
+    }
+
+    get message() {
+        return this.#message;
+    }
+}
+
+class CartException extends Error {
+}
+
+module.exports = class EmptyCartException extends CartException {
 }

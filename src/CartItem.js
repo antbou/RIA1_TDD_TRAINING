@@ -37,8 +37,8 @@ module.exports = class CartItem {
         if (quantity < 1) {
             throw new InvalidQuantityException('The id cannot be smaller than one.');
         }
-        if (price < 10){
-            throw  new InvalidPriceException('The id cannot be smaller than one.');
+        if (price < 10) {
+            throw new InvalidPriceException('The id cannot be smaller than one.');
         }
         this.#articleId = articleId;
         this.#quantity = quantity;
@@ -47,14 +47,14 @@ module.exports = class CartItem {
     /**
      * @brief This property gets the article id
      */
-    get ArticleId() {
+    get articleId() {
         return this.#articleId;
     }
 
     /**
      * @brief This property gets the quantity
      */
-    get Quantity() {
+    get quantity() {
         return this.#quantity;
     }
 
@@ -73,7 +73,7 @@ module.exports = class CartItem {
     /**
      * @brief This property gets the price
      */
-    get Price() {
+    get price() {
         return this.#price;
     }
 
@@ -92,7 +92,7 @@ module.exports = class CartItem {
     /**
      * @brief This property gets the total
      */
-    get Total() {
+    get total() {
         return this.#quantity * this.#price;
     }
     //endregion public methods
@@ -101,6 +101,23 @@ module.exports = class CartItem {
     //endregion private methods
 }
 
+//TODO externalize Error class (duplicate with Cart and CartItem)
+class Error {
+    #message;
+    constructor(message) {
+        this.#message = message;
+    }
+
+    get message() {
+        return this.#message;
+    }
+}
+
+class CartItemException extends Error {
+}
+
+module.exports = class InvalidArticleIdException extends CartItemException {
+}
 
 
 

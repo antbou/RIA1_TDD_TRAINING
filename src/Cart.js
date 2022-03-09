@@ -40,7 +40,7 @@ module.exports = class Cart {
         if (this.items == null) {
             throw new EmptyCartException('The cart items cannot be null');
         }
-        return this.#items.map(item => item.price).reduce((prev, next) => prev + next);
+        return this.items.map(item => item.total).reduce((prev, next) => prev + next);
     }
     //endregion public methods
 

@@ -192,30 +192,6 @@ test('updateCart_UpdateExistingCartItemQuantity_Success', () => {
     expect(expectedTotalPrice).toEqual(cart.totalPrice);
 })
 
-test('updateCart_RemoveOneOfCartItem_Success', () => {
-    //given
-    //prepare initial cart
-    let item1 = new CartItem(1,"Iphone 27",2,10);
-    let item2 = new CartItem(2,"Iphone 28",1,30);
-    let cart = new Cart([item1, item2]);
-
-    //prepare cart update
-    let itemToUpdate = new CartItem(1, "Iphone 27"  ,0,10);
-    let expectedItems = ([item2]);
-    let expectedTotalPrice = 30;
-
-    //when
-    cart.updateCart(expectedItems);
-
-    //then
-    let actualItems = cart.items;
-    for (let i = 0 ; i <= expectedItems.length ; i++)
-    {
-        expect(expectedItems[i]).toEqual(actualItems[i]);
-    }
-    expect(expectedTotalPrice).toEqual(cart.totalPrice);
-})
-
 test('updateCart_AddEmptyItemsInEmptyCart_ThrowException', () => {
     //given
     let cart = new Cart(null);
